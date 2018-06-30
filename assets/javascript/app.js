@@ -61,6 +61,18 @@
             $("#role-term").text(snapshot.val().email);
             $("#start-date").text(snapshot.val().age);
             $("#monthly-rate").text(snapshot.val().MonthlyRate);
+
+            var newRow = $("<tr>").append(
+                $("<td>").text(empName),
+                $("<td>").text(empRole),
+                $("<td>").text(empStartPretty),
+                $("<td>").text(empMonths),
+                $("<td>").text(empRate),
+                $("<td>").text(empBilled)
+              );
+              // Append the new row to the table
+              $("#employee-table > tbody").append(newRow);
+             });
       
             // Handle the errors
     }, function(errorObject) {
