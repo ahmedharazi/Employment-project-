@@ -1,10 +1,8 @@
-<script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
-        <script>
             // START CODING BELOW!!
 
             // Initialize Firebase
             var config = {
-                apiKey: "AIzaSyCdn5NUnDX9-HQGir0lKw8EFvzsOanEexU",
+            apiKey: "AIzaSyCdn5NUnDX9-HQGir0lKw8EFvzsOanEexU",
             authDomain: "class-project-7a450.firebaseapp.com",
             databaseURL: "https://class-project-7a450.firebaseio.com",
             projectId: "class-project-7a450",
@@ -18,9 +16,10 @@
          
              // Initial Values
              var name = "";
-             var email = "";
-             var age = 0;
-             var comment = "";
+             var role = "";
+             var StartDate= 0;
+             var MonthlyRate = 0;
+            
          
              // Capture Button Click
     $("#add-user").on("click", function(event) {
@@ -30,16 +29,18 @@
             // YOUR TASK!!!
             // Code in the logic for storing and retrieving the most recent user.
             // Don't forget to provide initial data to your Firebase database.
-            name = $("#name-input").val().trim();
-            email = $("#email-input").val().trim();
-            age = $("#age-input").val().trim();
-            comment = $("#comment-input").val().trim();
+          firebase.initializeApp(config);
+            name = $("#name-term").val().trim();
+            role = $("#role-term").val().trim();
+            StartDate = $("#start-date").val().trim();
+            MonthlyRate = $("#monthly-rate").val().trim();
       
-      database.ref().set({
-                name: name,
-            email: email,
-            age: age,
-            comment: comment
+      database.ref().push({
+            name: name,
+            role: role,
+            StartDate: StartDate,
+            MonthlyRate: MonthlyRate,
+            dateAdded: firebase.database.ServerValue.TIMESTAMP
           });
     
         });
@@ -48,19 +49,21 @@
     database.ref().on("value", function(snapshot) {
 
                 // Log everything that's coming out of snapshot
-                console.log(snapshot.val());
+            console.log(snapshot.val());
             console.log(snapshot.val().name);
-            console.log(snapshot.val().email);
-            console.log(snapshot.val().age);
-            console.log(snapshot.val().comment);
+            console.log(snapshot.val().role);
+            console.log(snapshot.val().StartDate);
+            console.log(snapshot.val().MonthlyRate);
       
             // Change the HTML to reflect
-            $("#name-display").text(snapshot.val().name);
-            $("#email-display").text(snapshot.val().email);
-            $("#age-display").text(snapshot.val().age);
-            $("#comment-display").text(snapshot.val().comment);
+            $("#name-term").text(snapshot.val().name);
+            $("#role-term").text(snapshot.val().email);
+            $("#start-date").text(snapshot.val().age);
+            $("#monthly-rate").text(snapshot.val().comment);
       
             // Handle the errors
     }, function(errorObject) {
                 console.log("Errors handled: " + errorObject.code);
             });
+
+            dateRef.ref().orderByChild("dataAdded").limitToLast
