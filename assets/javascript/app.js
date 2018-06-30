@@ -70,7 +70,12 @@ database.ref().on("child_added", function (snapshot) {
     var empStart = snapshot.val().startDate;
     var empRate = snapshot.val().MonthlyRate;
     // Prettify the employee start
-    var empStartDate = moment.unix(empStart).format("MM/DD/YYYY");
+    //var randomDate = "02/23/1999";
+    //var randomFormat = "MM/DD/YYYY";
+    //var convertedDate = moment(randomDate, randomFormat);
+    //var newDate = moment("02/14/2001", randomFormat);
+
+    var empStartDate = moment(empStart).format("MM/DD/YYYY");
 
     // Calculate the months worked using hardcore math
     // To calculate the months worked
