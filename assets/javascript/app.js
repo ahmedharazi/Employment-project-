@@ -33,7 +33,8 @@ $("#add-user").on("click", function (event) {
         name : name,
         role : role,
         StartDate : StartDate,
-        MonthlyRate : MonthlyRate
+        MonthlyRate : MonthlyRate,
+        rate : empRate
     };
 
     database.ref().push(newEmp);
@@ -67,36 +68,28 @@ database.ref().on("child_added", function (snapshot) {
     var empName = snapshot.val().name;
     var empRole = snapshot.val().role;
     var empStart = snapshot.val().startDate;
-    var empMonthlyRate = snapshot.val().MonthlyRate;
+    var empRate = snapshot.val().MonthlyRate;
     // Prettify the employee start
-    //var empStart = moment.unix(empStart).format("MM/DD/YYYY");
+    var empStartDate = moment.unix(empStart).format("MM/DD/YYYY");
 
     // Calculate the months worked using hardcore math
     // To calculate the months worked
-    //var empMonths = moment().diff(moment(empStart, "X"), "months");
+    var empMonthlyRate = moment().diff(moment(empStartDate, "X"), "months");
     //console.log(empMonths);
 
     // Calculate the total billed rate
-    //var empBilled = empMonths * empRate;
+    var empBilled = empMonthlyRate * empRate;
     //console.log(empBilled);
 
 
     var newRow = $("<tr>").append(
         $("<td>").text(empName),
         $("<td>").text(empRole),
-        $("<td>").text(empStart),
+        $("<td>").text(empStartDate),
         $("<td>").text(empMonthlyRate),
-        //$("<td>").text(empRate),
-        //$("<td>").text(empBilled)
+        $("<td>").text(empRate),
+        $("<td>").text(empBilled)
     );
     // Append the new row to the table
     $("#add-employee-row > tbody").append(newRow);
 });
-
-//             // Handle the errors
-//     }, function(errorObject) {
-//     console.log("Errors handled: " + errorObject.code);
-// });
-
-// database.ref().orderByChild("dataAdded");
-//         });
