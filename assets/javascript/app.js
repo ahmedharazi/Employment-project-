@@ -1,8 +1,5 @@
-<script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
-        <script>
-            // START CODING BELOW!!
 
-            // Initialize Firebase
+        // Initialize Firebase
             var config = {
                 apiKey: "AIzaSyCdn5NUnDX9-HQGir0lKw8EFvzsOanEexU",
             authDomain: "class-project-7a450.firebaseapp.com",
