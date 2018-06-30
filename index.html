@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Data Managment</title>
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Employee Data Managment</title>
+        <!-- Bootstrap CSS CDN  -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+        <!-- Font Awesome CSS Icons (For cool glyphicons) -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+        <!-- Style to fix the issue of text extending past panel length -->
+        <style>
+            .card-body a {
+                word-break: break-all;
+            }
+
+            .articleHeadline {
+                line-height: 1.5;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- Main Bootstrap Search -->
+        <div class="container">
+            <!-- Jumbotron for Title -->
+            <div class="jumbotron" style="background-color: #20315A ; color: white;">
+                <h1 class="text-center">
+                    <strong>
+                        <i class="fa fa-newspaper-o"></i> Employee Data Managment</strong>
+                </h1>
+            </div>
+            <!-- Row for Searching New York Times -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <br>
+                    <!-- First panel is for handling the search parameters -->
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>
+                                <i class="fa fa-list-alt"></i> Add Employee</strong>
+                        </div>
+                        <div class="card-body">
+                            <!-- Here we create an HTML Form for handling the inputs-->
+                            <form role="form">
+                                <!-- Here we create the text box for capturing the search term-->
+                                <div class="form-group">
+                                    <label for="search">Employee Name:</label>
+                                    <input type="text" class="form-control" id="name-term">
+                                </div>
+                                <!-- Here we capture the number of records that the user wants to retrieve  -->
+                                <div class="form-group">
+                                    <label for="pwd">Role</label>
+                                    <input type="text" class="form-control" id="role-term">
+
+                                </div>
+                                <!-- Here we capture the Start Year Parameter-->
+                                <div class="form-group">
+                                    <label for="start-year">Start Date (MM/DD/YYYY):</label>
+                                    <input type="date" class="form-control" id="start-date">
+                                </div>
+                                <!-- Here we capture the End Year Parameter -->
+                                <div class="form-group">
+                                    <label for="end-year">Monthly Rate:</label>
+                                    <input type="text" class="form-control" id="monthly-rate">
+                                </div>
+                                <!-- Here we have our final submit button -->
+                                <button type="submit" class="btn btn-default" id="run-search">
+                                    <i class="fa fa-search"></i> Search</button>
+                                <button class="btn btn-default" id="clear-all">
+                                    <i class="fa fa-trash"></i> Clear Results</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- This row will handle all of the retrieved articles -->
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <br>
+                    <!-- This panel will initially be made up of a panel and wells for each of the articles retrieved -->
+                    <div class="card">
+                        <!-- Panel Heading for the retrieved articles box -->
+                        <div class="card-header">
+                            <h2> Current Employees</h2>
+                            <center>
+                                <table style="width:80%" id="directory">
+                                    <thead>
+                                        <tr>
+                                            <th id="employee">Employee Name</th>
+                                            <th id="role">Role</th>
+                                            <th id="start">Start Date</th>
+                                            <th id="months-worked">Months Worked</th>
+                                            <th id="monthly-rate">Monthly Rate($)</th>
+                                            <th id="total-billed">Total Billed($)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="add-employee-row"></tbody>
+                                </table>
+                            </center>
+                        </div>
+                        <!-- This main panel will hold each of the resulting articles -->
+                        <div class="card-body" id="article-section">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- jQuery JS -->
+            <script src="https://code.jquery.com/jquery.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+
+
+            <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+            <!-- Script -->
+            <script>
+                // START CODING BELOW!!
+
+                // Initialize Firebase
+                var config = {
+                    apiKey: "AIzaSyCdn5NUnDX9-HQGir0lKw8EFvzsOanEexU",
+                    authDomain: "class-project-7a450.firebaseapp.com",
+                    databaseURL: "https://class-project-7a450.firebaseio.com",
+                    projectId: "class-project-7a450",
+                    storageBucket: "",
+                    messagingSenderId: "713188156272"
+                };
+                firebase.initializeApp(config);
+
+
+                // Create a variable to reference the database
+                var database = firebase.database();
+
+                // Initial Values
+                var name = "";
+                var role = "";
+                var StarDate = 0;
+                var MonthlyRate = "";
+                var
+
+                    // Capture Button Click
+                    $("#add-user").on("click", function (event) {
+                        // Don't refresh the page!
+                        event.preventDefault();
+
+                        // YOUR TASK!!!
+                        // Code in the logic for storing and retrieving the most recent user.
+                        // Don't forget to provide initial data to your Firebase database.
+                        name = $("#name-input").val().trim();
+                        email = $("#email-input").val().trim();
+                        age = $("#age-input").val().trim();
+                        comment = $("#comment-input").val().trim();
+
+                        database.ref().set({
+                            name: name,
+                            email: email,
+                            age: age,
+                            comment: comment
+                        });
+
+                    });
+
+                // Firebase watcher + initial loader HINT: .on("value")
+                database.ref().on("value", function (snapshot) {
+
+                    // Log everything that's coming out of snapshot
+                    console.log(snapshot.val());
+                    console.log(snapshot.val().name);
+                    console.log(snapshot.val().email);
+                    console.log(snapshot.val().age);
+                    console.log(snapshot.val().comment);
+
+                    // Change the HTML to reflect
+                    $("#name-display").text(snapshot.val().name);
+                    $("#email-display").text(snapshot.val().email);
+                    $("#age-display").text(snapshot.val().age);
+                    $("#comment-display").text(snapshot.val().comment);
+
+                    // Handle the errors
+                }, function (errorObject) {
+                    console.log("Errors handled: " + errorObject.code);
+                });
+                <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+
+            <script src="assets/javascript/app.js"></script>
+    </body>
+
+    </html>
+
+
+    Add CommentCollapse  Message Input Message @Ahmed Harazi About this conversation Wrap • Today at 10:06 AM • 7 kB HTML snippet
+    • Private snippet shared with you Add Comment
