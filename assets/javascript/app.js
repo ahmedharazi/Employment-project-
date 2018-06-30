@@ -34,7 +34,7 @@ $("#add-user").on("click", function (event) {
         role : role,
         StartDate : StartDate,
         MonthlyRate : MonthlyRate,
-        rate : empRate
+        //rate : empRate
     };
 
     database.ref().push(newEmp);
@@ -75,7 +75,7 @@ database.ref().on("child_added", function (snapshot) {
     //var convertedDate = moment(randomDate, randomFormat);
     //var newDate = moment("02/14/2001", randomFormat);
 
-    var empStartDate = moment(empStart).format("MM/DD/YYYY");
+    var empStartDate = moment.unix(empStart).format("MM/DD/YYYY");
 
     // Calculate the months worked using hardcore math
     // To calculate the months worked
