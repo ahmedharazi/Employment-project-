@@ -72,7 +72,7 @@
                                     <input type="text" class="form-control" id="monthly-rate">
                                 </div>
                                 <!-- Here we have our final submit button -->
-                                <button id = "add-user" type="button" class="btn btn-primary">Submit</button>
+                                <button type="button" class="btn btn-primary" id="add-user">Submit</button>
                             </form>
 
                         </div>
@@ -90,9 +90,9 @@
                         <div class="card-header">
                             <h2> Current Employees</h2>
                             <center>
-                                <table style="width:80%" id="directory">
+                                <table class="table" style="width:80%" id="directory">
                                     <thead>
-                                        <tr>
+                                        <tr id="tr">
                                             <th id="employee">Employee Name</th>
                                             <th id="role">Role</th>
                                             <th id="start">Start Date</th>
@@ -101,7 +101,9 @@
                                             <th id="total-billed">Total Billed($)</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="add-employee-row"></tbody>
+                                    <tbody >
+
+                                    </tbody>
                                 </table>
                             </center>
                         </div>
@@ -116,7 +118,6 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
             <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
             <!-- Script -->
-            <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
             <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
             <script src="assets/javascript/app.js"></script>
     </body>
