@@ -14,6 +14,5 @@ https://ahmedharazi.github.io/COFFEE-ME-/
 
 ## You can see the app code on the following link
 https://github.com/ahmedharazi/Employment-project-
-https://ahmedharazi.github.io/COFFEE-ME-/
 
 
