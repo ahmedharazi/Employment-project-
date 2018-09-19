@@ -9,17 +9,17 @@ var config = {
     storageBucket: "employee-data-6f2b7.appspot.com",
     messagingSenderId: "641863849634"
 };
-firebase.initializeApp(config);
+  firebase.initializeApp(config);
 
-// Create a variable to reference the database
-var database = firebase.database();
+  var database =  firebase.database();
 
-var name = "";
-var role = "";
-var date = "";
-var monthly = "";
-var total = "";
-var worked = "";
+  var name = "";
+  var role = "";
+  var date = "";
+  var monthly = "";
+  var total = "";
+  var worked = "";
+
 
 $("#add-employee").on("click", function(){
       event.preventDefault();
