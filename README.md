@@ -13,4 +13,12 @@ This System includes the following tasks:
 4). Deleting employee details from the Data file.
 
 
+
+
+
+
+![app image](/assets/images/pic1.png)
+![app image](/assets/images/pic2.png)
+
+
 https://ahmedharazi.github.io/Employment-project-/
